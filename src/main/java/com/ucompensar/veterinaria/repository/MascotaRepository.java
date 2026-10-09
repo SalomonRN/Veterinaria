@@ -1,5 +1,5 @@
 package com.ucompensar.veterinaria.repository;
 
-public class MascotaRepository {
+public class MascotaRepository extends JpaRepository<Mascota, Long> {
 
 }
