@@ -13,6 +13,8 @@ public class Cita {
     @ManyToOne(optional = false)
     private Mascota mascota;
 
+    LocalDateTime fecha;
+
     public Long getId() {
         return id;
     }
