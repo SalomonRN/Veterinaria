@@ -2,6 +2,8 @@ package com.ucompensar.veterinaria.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 public class Cita {
 
@@ -12,20 +14,33 @@ public class Cita {
     @ManyToOne(optional = false)
     private Mascota mascota;
 
+    private LocalDateTime fecha;
 
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
     public Mascota getMascota() {
+
         return mascota;
     }
 
     public void setMascota(Mascota mascota) {
+
         this.mascota = mascota;
+    }
+
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(LocalDateTime fecha) {
+        this.fecha = fecha;
     }
 }
