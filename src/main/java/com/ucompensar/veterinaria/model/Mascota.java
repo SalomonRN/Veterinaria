@@ -1,11 +1,10 @@
 package com.ucompensar.veterinaria.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import jakarta.persistence.*;
+import com.ucompensar.veterinaria.model.Cita;
 import java.time.LocalDate;
+import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class Mascota {
@@ -19,6 +18,8 @@ public class Mascota {
     private LocalDate fechaNacimiento;
     private String nombrePropietario;
     private String telefonoPropietario;
+    @OneToMany
+    private List<Cita> citas;
 
     public Long getId() {
         return id;
@@ -74,5 +75,13 @@ public class Mascota {
 
     public void setTelefonoPropietario(String telefonoPropietario) {
         this.telefonoPropietario = telefonoPropietario;
+    }
+
+    public void setCitas(List<Cita> citas) {
+        this.citas = citas;
+    }
+
+    public List<Cita> getCitas() {
+        return citas;
     }
 }
