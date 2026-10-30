@@ -2,48 +2,57 @@ package com.ucompensar.veterinaria.service;
 
 import com.ucompensar.veterinaria.model.Mascota;
 import com.ucompensar.veterinaria.repository.MascotaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
+    @Service
 public class MascotaServiceImpl implements MascotaService {
 
-    public MascotaRepository mascotaRepository;
+    private MascotaRepository mascotaRepository;
 
-    @Autowired
-    public MascotaServiceImpl(MascotaRepository mascotaRepository){
+    public MascotaServiceImpl(MascotaRepository mascotaRepository) {
         this.mascotaRepository = mascotaRepository;
     }
 
     @Override
     public Mascota registrar(Mascota mascota) {
+
         return mascotaRepository.save(mascota);
     }
 
     @Override
     public Mascota actualizar(Mascota mascota, Long id) {
-        return mascotaRepository.save(mascota);
+
+        Mascota mascota1 = mascotaRepository.findById(id).get();
+        mascota1.setNombre(mascota.getNombre());
+        mascota1.setEspecie(mascota.getEspecie());
+        mascota1.setTelefonoPropietario(mascota.getNombre());
+        mascota1.setNombrePropietario(mascota.getEspecie());
+
+        return mascotaRepository.save(mascota1);
     }
 
     @Override
     public boolean eliminar(Long id) {
-        if(obtenerPorId(id) != null){
-            mascotaRepository.deleteById(id);
+        Mascota mascota1 = obtenerPorId(id);
+        if(mascota1 !=null){
+            mascotaRepository.delete(mascota1);
             return true;
         }
         return false;
+
     }
 
     @Override
     public Mascota obtenerPorId(Long id) {
-        return mascotaRepository.getReferenceById(id);
+
+        return mascotaRepository.findById(id).get();
+
     }
 
     @Override
     public List<Mascota> listarTodo() {
-        return mascotaRepository.findAll();
-
+        return List.of();
     }
 }
